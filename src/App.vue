@@ -39,7 +39,7 @@ export default {
           break;
         }
       }
-
+      
       if (operator) {
         // 2p1. split operator se aur save krralo operator ko
         const operand = input.split(operator)

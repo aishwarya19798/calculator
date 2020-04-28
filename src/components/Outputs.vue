@@ -1,5 +1,5 @@
 <template>
-  <div>{{ buttonLog }}</div>
+  <div>{{ buttonLog.join("") }}</div>
 </template>
 
 <script>
