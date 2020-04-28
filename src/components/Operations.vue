@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <div>
+    Result :
+    <div v-if="job">
+      {{ arithmeticOperation(job[0][0], job[0][1], job[1]) }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -7,8 +12,8 @@ export default {
   name: "operations",
   methods: {
     arithmeticOperation(a, b, op) {
-      a = Number.parseFloat(a)
-      b = Number.parseFloat(b)
+      a = Number.parseFloat(a);
+      b = Number.parseFloat(b);
       let res = undefined;
       switch (op) {
         case "+":
@@ -24,12 +29,10 @@ export default {
           res = a * b;
           break;
       }
-      console.log(res);
+      return res;
     },
   },
-  props : [
-    "operation"
-  ]
+  props: ["job"],
 };
 </script>
 

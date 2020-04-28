@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <buttons @click="onButtonClick" />
+    <buttons @click="onButtonClick" :operators="operators" />
     <outputs :buttonLog="buttonLog" />
-    <operations :operation="valuesPassed()" />
+    <operations :job="valuesPassed()" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
   },
   data() {
     return {
+      operators: ["+", "-", "*", "/"],
       buttonLog: [],
     };
   },
@@ -28,12 +29,27 @@ export default {
     },
     valuesPassed() {
       // 1. this.buttonLog ko string me krrna
+      const input = this.buttonLog.join("");
+
       // 2. check ki kya koi operator h?
-      // 2p1. split operator se aur save krralo operator ko
-      // 2p2. operations ko split aur operator dedo
+      let operator = null;
+      for (const optr of this.operators) {
+        if (input.includes(optr)) {
+          operator = optr;
+          break;
+        }
+      }
+
+      if (operator) {
+        // 2p1. split operator se aur save krralo operator ko
+        const operand = input.split(operator)
       
+        // 2p2. operations ko split ki value aur operator dedo
+        return [operand,operator];  // [[1,2],+]
+      }
+
       // 2n1. kuch nhi krre
-      
+      return null;
     },
   },
 };
