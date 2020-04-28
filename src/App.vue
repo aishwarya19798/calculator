@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <buttons @click="onButtonClick" />
+    <outputs :buttonLog="buttonLog" />
+    <operations :operation="valuesPassed()" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import operations from "./components/Operations";
+import buttons from "./components/Buttons";
+import outputs from "./components/Outputs";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    outputs,
+    buttons,
+    operations,
+  },
+  data() {
+    return {
+      buttonLog: [],
+    };
+  },
+  methods: {
+    onButtonClick(value) {
+      this.buttonLog = [...this.buttonLog, value];
+    },
+    valuesPassed() {
+      // 1. this.buttonLog ko string me krrna
+      // 2. check ki kya koi operator h?
+      // 2p1. split operator se aur save krralo operator ko
+      // 2p2. operations ko split aur operator dedo
+      
+      // 2n1. kuch nhi krre
+      
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
 }
 </style>
