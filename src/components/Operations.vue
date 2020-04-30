@@ -13,7 +13,7 @@ export default {
   methods: {
     arithmeticOperation(a, b, op) {
       a = Number.parseFloat(a);
-      b = Number.parseFloat(b);
+      b = Number.parseFloat(b) || 0;
       let res = undefined;
       switch (op) {
         case "+":

@@ -7,46 +7,39 @@
     >
       {{ num }}
     </button>
-    <button
-      v-bind:key="o"
-      v-for="(opr, o) in operators"
-      @click="$emit('click', opr)"
-    >
-      {{ opr }}
-    </button>
+    <div>
+      <button
+        v-bind:key="o"
+        v-for="(opr, o) in operators"
+        @click="operatorClicked(opr)"
+      >
+        {{ opr }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "buttons",
-  props: ["operators"],
+  props: ["operators", "buttonLog"],
   data() {
     return {
       numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      isOperatorClicked: false,
     };
+  },
+  methods: {
+    operatorClicked(value) {
+      if (!this.isOperatorClicked && this.buttonLog.length > 0) {
+        this.isOperatorClicked = true;
+        this.$emit("click", value);
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
-  /* justify-content: center;
-  align-content: center;
-  align-items: center; */
-}
-div button {
-  border: 1px solid gray;
-  border-radius: 1px;
-  height: 50px;
-  width: 50px;
-  /* display: grid;
-  justify-content: center;
-  align-content: center;
-  align-items: center; */
-}
+
 </style>

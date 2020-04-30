@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <buttons @click="onButtonClick" :operators="operators" />
+    <buttons
+      :buttonLog="buttonLog"
+      @click="onButtonClick"
+      :operators="operators"
+    />
     <outputs :buttonLog="buttonLog" />
     <operations :job="valuesPassed()" />
   </div>
@@ -39,13 +43,13 @@ export default {
           break;
         }
       }
-      
+
       if (operator) {
         // 2p1. split operator se aur save krralo operator ko
-        const operand = input.split(operator)
-      
+        const operand = input.split(operator);
+
         // 2p2. operations ko split ki value aur operator dedo
-        return [operand,operator];  // [[1,2],+]
+        return [operand, operator]; // [[1,2],+]
       }
 
       // 2n1. kuch nhi krre
@@ -56,7 +60,5 @@ export default {
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+
 </style>
